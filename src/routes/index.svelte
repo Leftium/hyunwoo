@@ -133,7 +133,7 @@
             console.log('handleClick');
             programmaticController.open();
         }
-        window['handleClick'] = handleClick;
+        window.handleClick = handleClick;
     });
 
 </script>
@@ -147,7 +147,7 @@
 
 <div class=hidden>
     <Lightbox imagePreset=fullscreen bind:programmaticController >
-            <iframe src="{url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            <iframe title="Slides" src="{url}" frameborder="0" allowfullscreen={true} ></iframe>
     </Lightbox>
 </div>
 
