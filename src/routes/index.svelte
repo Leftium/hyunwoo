@@ -5,10 +5,15 @@
 <script lang=ts>
     import { onMount } from 'svelte';
 
+    import { Lightbox } from 'svelte-lightbox';
+
     import {PUBLIC_NAVER_MAPS_CLIENT_ID} from '$env/static/public';
 
     // Props from API;
     export let data:any;
+
+    let url = '';
+    let programmaticController: any;
 
     onMount(() => {
         const mapOptions = {
@@ -51,7 +56,6 @@
                 icon: {
                     url: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_${color}${number}.png`
                 }
-
             });
 
             let infoContent = '';
@@ -59,8 +63,9 @@
                 if (detail[0] != '_') {
                     infoContent += `<b>${detail}:</b> ${d.info[detail]} <br />`
                 }
-                if (detail == '_Slide Url') {
-                    infoContent += `<center><a href="${d.info[detail]}" target=_blank>자세한 정보</a></center>`
+                if (detail == '_Slide Url' && d.info[detail] != 'n/a') {
+                    marker.url = d.info[detail];
+                    infoContent += `<center><button onclick="handleClick()" >자세한 정보</button></center>`
                 }
 
             }
@@ -115,6 +120,7 @@
                     infoWindow.close();
                 } else {
                     infoWindow.open(map, marker);
+                    url = marker.url;
                 }
             }
         }
@@ -122,6 +128,12 @@
         markers.forEach((marker:any, index:number) => {
             naver.maps.Event.addListener(marker, 'click', createClickHandler(index));
         })
+
+        function handleClick() {
+            console.log('handleClick');
+            programmaticController.open();
+        }
+        window['handleClick'] = handleClick;
     });
 
 </script>
@@ -132,6 +144,14 @@
 
 
 <div id=map />
+
+<Lightbox bind:programmaticController >
+
+        <iframe src="{url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+</Lightbox>
+
+
 
 <style>
     :global(html, body),
@@ -147,5 +167,10 @@
 
         background-color: #2aa198;
         padding: 0;
+    }
+
+    iframe {
+        width: 80vw;
+        height: 80vh;
     }
 </style>
