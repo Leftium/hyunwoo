@@ -65,7 +65,7 @@
                 }
                 if (detail == '_Slide Url' && d.info[detail] != 'n/a') {
                     marker.url = d.info[detail];
-                    infoContent += `<center><button onclick="handleClick()" >자세한 정보</button></center>`
+                    infoContent += `<center><button class=more-info onclick="handleClick()" >자세한 정보</button></center>`
                 }
 
             }
@@ -176,5 +176,11 @@
     iframe {
         width: 80vw;
         height: 80vh;
+    }
+
+    :global(button.more-info) {
+        width: 100%;
+        height: 40px;
+        margin-top: 8px;
     }
 </style>
