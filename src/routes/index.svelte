@@ -145,11 +145,11 @@
 
 <div id=map />
 
-<Lightbox bind:programmaticController >
-
-        <iframe src="{url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-</Lightbox>
+<div class=hidden>
+    <Lightbox bind:programmaticController >
+            <iframe src="{url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    </Lightbox>
+</div>
 
 
 
@@ -167,6 +167,10 @@
 
         background-color: #2aa198;
         padding: 0;
+    }
+
+    .hidden {
+        display:none;
     }
 
     iframe {
