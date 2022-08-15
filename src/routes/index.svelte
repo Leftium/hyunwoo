@@ -21,8 +21,19 @@
         let markers:any = [];
         let infoWindows:any = [];
 
+        let minLat = Infinity;
+        let minLng = Infinity;
+        let maxLat = -Infinity;
+        let maxLng = -Infinity;
+
         for (const d of data) {
             const position = new naver.maps.LatLng(d.position.lat, d.position.lng);
+
+            minLat = Math.min(minLat, d.position.lat);
+            minLng = Math.min(minLng, d.position.lng);
+            maxLat = Math.max(maxLat, d.position.lat);
+            maxLng = Math.max(maxLng, d.position.lng);
+
 
             const marker = new naver.maps.Marker({
                 map,
@@ -44,6 +55,10 @@
             markers.push(marker);
             infoWindows.push(infoWindow);
         }
+        map.fitBounds(new naver.maps.LatLngBounds(
+            new naver.maps.LatLng(minLat, minLng),
+            new naver.maps.LatLng(maxLat, maxLng)
+        ))
 
         function showMarker(map:any, marker:any) {
             if (!marker.getMap()) {
