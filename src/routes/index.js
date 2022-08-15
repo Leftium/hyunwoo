@@ -6,7 +6,7 @@ export async function GET() {
     const response = await fetch(url);
     const json = await response.json();
 
-    const results = [];
+    const data = [];
     let headers;
 
     let _; // Dump unwanted data into this variable.
@@ -25,7 +25,7 @@ export async function GET() {
             info.set(header, otherDetails[i] || 'n/a');
         });
 
-        results.push({
+        data.push({
             position: { lat, lng },
             info: Object.fromEntries(info)
         })
@@ -33,7 +33,7 @@ export async function GET() {
 
     return {
         body: {
-            data: results
+            data
         }
     }
 }
