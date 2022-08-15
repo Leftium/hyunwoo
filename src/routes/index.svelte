@@ -1,2 +1,18 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div id=map />
+
+<style>
+    :global(html, body),
+    :global(body > div:first-child ) {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+
+        background-color: #2aa198;
+        padding: 0;
+    }
+</style>
