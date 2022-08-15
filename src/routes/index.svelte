@@ -16,6 +16,13 @@
             zoom: 10
         };
 
+        const COLORS = new Map(Object.entries({
+                '준공': 'blue',
+                '공사중': 'purple',
+                '공급중': 'green',
+                '공급예정': 'orange'
+              }));
+
         const map = new naver.maps.Map('map', mapOptions);
 
         let markers:any = [];
@@ -34,11 +41,17 @@
             maxLat = Math.max(maxLat, d.position.lat);
             maxLng = Math.max(maxLng, d.position.lng);
 
+            const number = d.info['연번'];
+            const color = COLORS.get(<string>d.info['구분']) || 'black';
 
             const marker = new naver.maps.Marker({
                 map,
                 position,
-                zIndex: 100
+                zIndex: 100,
+                icon: {
+                    url: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_${color}${number}.png`
+                }
+
             });
 
             let infoContent = '';
