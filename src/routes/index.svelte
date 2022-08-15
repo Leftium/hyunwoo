@@ -146,7 +146,7 @@
 <div id=map />
 
 <div class=hidden>
-    <Lightbox bind:programmaticController >
+    <Lightbox imagePreset=fullscreen bind:programmaticController >
             <iframe src="{url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </Lightbox>
 </div>
@@ -174,8 +174,10 @@
     }
 
     iframe {
-        width: 80vw;
-        height: 80vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100vw;
+        height: 100vh;
     }
 
     :global(button.more-info) {
