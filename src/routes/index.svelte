@@ -184,5 +184,6 @@
         width: 100%;
         height: 40px;
         margin-top: 8px;
+        font-size: larger;
     }
 </style>
