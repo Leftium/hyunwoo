@@ -43,11 +43,17 @@
 
             let infoContent = '';
             for (const detail in d.info) {
-                infoContent += `<b>${detail}:</b> ${d.info[detail]} <br />`
+                if (detail[0] != '_') {
+                    infoContent += `<b>${detail}:</b> ${d.info[detail]} <br />`
+                }
+                if (detail == '_Slide Url') {
+                    infoContent += `<center><a href="${d.info[detail]}" target=_blank>자세한 정보</a></center>`
+                }
+
             }
 
             const infoWindow = new naver.maps.InfoWindow({
-                content: `<div style="width:150px;padding:10px;">
+                content: `<div class=info-content style="padding: 8px;">
                               ${infoContent}
                           </div>`
             });
