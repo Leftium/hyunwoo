@@ -39,12 +39,12 @@
         let maxLng = -Infinity;
 
         for (const d of data) {
-            const position = new naver.maps.LatLng(d.position.lat, d.position.lng);
-
             minLat = Math.min(minLat, d.position.lat);
             minLng = Math.min(minLng, d.position.lng);
             maxLat = Math.max(maxLat, d.position.lat);
             maxLng = Math.max(maxLng, d.position.lng);
+
+            const position = new naver.maps.LatLng(d.position.lat, d.position.lng);
 
             const number = d.info['연번'];
             const color = COLORS.get(<string>d.info['구분']) || 'black';
@@ -83,6 +83,7 @@
             new naver.maps.LatLng(minLat, minLng),
             new naver.maps.LatLng(maxLat, maxLng)
         ))
+        console.log({minLat, minLng, maxLat, maxLng});
 
         function showMarker(map:any, marker:any) {
             if (!marker.getMap()) {
